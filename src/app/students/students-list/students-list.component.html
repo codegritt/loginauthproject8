@@ -1,0 +1,417 @@
+
+  <div id="MasterDiv">
+
+    <nav class="navbar navbar-dark bg-primary">
+  
+      <nav role="navigation">
+        <div id="menuToggle">
+  
+          <input type="checkbox" />
+  
+          <span></span>
+          <span></span>
+          <span></span>
+  
+          <ul id="menu">
+            <a href="index.html" routerLink="/home" routerLinkActive="active">
+              <li>Home</li>
+            </a>
+            <a href="about.html" routerLink="/register" routerLinkActive="active">
+              <li>Register Form</li>
+          </a>
+
+          <a href="contact.html" routerLink="/login" routerLinkActive="active">
+              <li>Login Form</li>
+          </a>
+
+          <a href="store.html" routerLink="/special" routerLinkActive="active">
+              <li>Dashboard 1</li>
+          </a>
+
+          <a href="store.html" routerLink="/dashboard3" routerLinkActive="active">
+              <li>Dashboard 3</li>
+          </a>
+          
+          <a href="store.html" routerLink="/fileupload" routerLinkActive="active">
+            <li>Fileupload</li>
+        </a>
+
+        <a href="store.html" routerLink="/home" routerLinkActive="active">
+          <li>Logout</li>
+      </a>
+            
+          </ul>
+        </div>
+      </nav>
+  
+  
+  
+      <div class="container-fluid">
+       
+        
+        <span class="navbar-brand mb-0 h1"
+          style="font-size:25px;font-family: sans-serif;position: relative;display: flex;justify-content: center;">Dashboard 1</span>
+        
+          <span class="ref" style="font-size:15px;font-family: sans-serif;position: fixed;right: 100px;top: 19px;">User: Gokul</span>
+        
+        <button class="btn1" routerLink="/login" routerLinkActive="active"><i class='fas fa-user-circle'
+            style='color: white;position: fixed;right: 75px;top: 20px;'></i></button>
+  
+            <button class="btn" routerLink="/home" routerLinkActive="active"> <i class="fa fa-sign-out" style='color: #fff;position: fixed;display: flex;justify-content: end;right: 25px;top: 19px;'></i></button>
+           
+            
+         <!-- <button class="btn"   routerLink="/home" routerLinkActive="active"><i class="material-icons"
+            style="color: white;position: fixed;right: 25px;top: 15px;">logout</i></button> -->
+            <!-- *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()"  -->
+      </div>
+    </nav>
+  
+ <div class="container">
+      <nav aria-label="Breadcrumb" class="breadcrumb">
+        <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="#" routerLink="/home" routerLinkActive="home" itemprop="item">
+              <span itemprop="name" class="sr-only">Home</span>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+            </a>
+            <meta itemprop="position" content="1" />
+          </li>
+        
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="#"  routerLink="/special" routerLinkActive="active" itemprop="item">
+              <span itemprop="name">Dashboard 1</span>
+            </a>
+            <meta itemprop="position" content="4" />
+          </li>
+         
+        </ol>
+      </nav>
+    </div> 
+
+
+
+
+
+
+
+
+
+
+<div class="container mat-elevation-z8">
+
+	<div class="table-loading-shade" *ngIf="isProcessing">
+		<mat-spinner *ngIf="isProcessing"></mat-spinner>
+	</div>
+
+	<span class="span1">Search</span>
+	<mat-form-field class="filter">
+
+		<input (keyup)="applyFilter($event.target.value)" matInput placeholder="">
+
+	</mat-form-field>
+
+
+
+	<div class="table-container">
+	<table mat-table multiTemplateDataRows [dataSource]="students" matSort 
+		matSortDirection="asc">
+
+		<!-- The student main row columns. -->
+		<ng-container matColumnDef="select">
+			<th mat-header-cell *matHeaderCellDef>
+				<mat-checkbox  style="position: relative;right: 8px;" (change)="$event ? masterToggle() : null"
+					[checked]="selection.hasValue() && isAllSelected()"
+					[indeterminate]="selection.hasValue() && !isAllSelected()">
+				</mat-checkbox>
+			</th>
+			<td mat-cell *matCellDef="let row">
+				<mat-checkbox  style="position: relative;right: 8px;" (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+					[checked]="selection.isSelected(row)">
+				</mat-checkbox>
+			</td>
+		</ng-container>
+
+		<ng-container matColumnDef="expandRow">
+			<th mat-header-cell *matHeaderCellDef></th>
+			<td mat-cell *matCellDef="let student">
+				<!-- <button *ngIf="!isStudentExpanded(student.studentId)" mat-icon-button
+					(click)="expandStudent(student.studentId)">
+					<mat-icon>arrow_right</mat-icon>
+				</button>
+				<button *ngIf="isStudentExpanded(student.studentId)" mat-icon-button
+					(click)="collapseStudent(student.studentId)">
+					<mat-icon>arrow_drop_down</mat-icon>
+				</button> -->
+			</td>
+		</ng-container>
+
+		<ng-container matColumnDef="studentSchoolId">
+			<th mat-header-cell *matHeaderCellDef>
+				<table>
+					<tr>
+						<td mat-sort-header>Employee Id</td>
+						<td #tdStudentId><button mat-icon-button matTooltip="Filter by Student Id"
+								(click)="openTextFilterDialog(tdStudentId, 'studentSchoolId')">
+								<mat-icon [ngClass]="getColumnFilterClass('studentSchoolId')">filter_list</mat-icon>
+							</button></td>
+					</tr>
+				</table>
+			</th>
+			<td mat-cell *matCellDef="let student">
+				<span *ngIf="!isEditingStudent(student.studentId)">{{student.studentSchoolId}}</span>
+				<span *ngIf="isEditingStudent(student.studentId)">
+					<mat-form-field appearance="outline" style="width: 140px;">
+						<input matInput [formControl]="studentSchoolIdFormControl">
+						<mat-error *ngIf="studentSchoolIdFormControl.invalid">
+							{{getErrorMessage(studentSchoolIdFormControl)}}</mat-error>
+					</mat-form-field>
+				</span>
+			</td>
+		</ng-container>
+
+		<ng-container matColumnDef="firstName">
+			<th mat-header-cell *matHeaderCellDef>
+				<table>
+					<tr>
+						<td mat-sort-header>First Name</td>
+						<td #tdFirstName><button mat-icon-button matTooltip="Filter by First Name"
+								(click)="openTextFilterDialog(tdFirstName, 'firstName')">
+								<mat-icon [ngClass]="getColumnFilterClass('firstName')">filter_list</mat-icon>
+							</button></td>
+					</tr>
+				</table>
+			</th>
+			<td mat-cell *matCellDef="let student">
+				<span *ngIf="!isEditingStudent(student.studentId)">{{student.firstName}}</span>
+				<span *ngIf="isEditingStudent(student.studentId)">
+					<mat-form-field appearance="outline" style="width: 100%;">
+						<input matInput [formControl]="firstNameFormControl">
+						<mat-error *ngIf="firstNameFormControl.invalid">{{getErrorMessage(firstNameFormControl)}}
+						</mat-error>
+					</mat-form-field>
+				</span>
+			</td>
+		</ng-container>
+
+		<ng-container matColumnDef="lastName">
+			<th mat-header-cell *matHeaderCellDef>
+				<table>
+					<tr>
+						<td mat-sort-header>Last Name</td>
+						<td #tdLastName><button mat-icon-button matTooltip="Filter by Last Name"
+								(click)="openTextFilterDialog(tdLastName, 'lastName')">
+								<mat-icon [ngClass]="getColumnFilterClass('lastName')">filter_list</mat-icon>
+							</button></td>
+					</tr>
+				</table>
+			</th>
+			<td mat-cell *matCellDef="let student">
+				<span *ngIf="!isEditingStudent(student.studentId)">{{student.lastName}}</span>
+				<span *ngIf="isEditingStudent(student.studentId)">
+					<mat-form-field appearance="outline" style="width: 100%;">
+						<input matInput [formControl]="lastNameFormControl">
+						<mat-error *ngIf="lastNameFormControl.invalid">{{getErrorMessage(lastNameFormControl)}}
+						</mat-error>
+					</mat-form-field>
+				</span>
+			</td>
+		</ng-container>
+
+		<ng-container matColumnDef="studentEmail">
+			<th mat-header-cell *matHeaderCellDef>
+				<table>
+					<tr>
+						<td mat-sort-header>Employee Email</td>
+						<td #tdStudentEmail><button mat-icon-button matTooltip="Filter by Student Email"
+								(click)="openTextFilterDialog(tdStudentEmail, 'studentEmail')">
+								<mat-icon [ngClass]="getColumnFilterClass('studentEmail')">filter_list</mat-icon>
+							</button></td>
+					</tr>
+				</table>
+			</th>
+			<td mat-cell *matCellDef="let student">
+				<span *ngIf="!isEditingStudent(student.studentId)">{{student.studentEmail}}</span>
+				<span *ngIf="isEditingStudent(student.studentId)">
+					<mat-form-field appearance="outline" style="width: 100%;">
+						<input matInput [formControl]="studentEmailFormControl">
+						<mat-error *ngIf="studentEmailFormControl.invalid">{{getErrorMessage(studentEmailFormControl)}}
+						</mat-error>
+					</mat-form-field>
+				</span>
+			</td>
+		</ng-container>
+
+		<ng-container matColumnDef="editDelete">
+			<th mat-header-cell *matHeaderCellDef>
+
+				<table>
+					<tr>
+						<td mat-sort-header>Actions</td>
+				
+				<button mat-icon-button matTooltip="Delete selected"
+					style=" border-color: transparent;font-size:26px;color:#d9534f;position: relative;right: 5px;" (click)="onDeleteSelectedClick()">
+					<mat-icon>delete_sweep</mat-icon>
+				</button>
+			</tr>
+			</table>
+		
+			</th>
+			<td mat-cell *matCellDef="let student">
+				<span *ngIf="!isEditingStudent(student.studentId)">
+
+					<button mat-icon-button matTooltip="Add student"
+					style=" border-color: transparent; font-size:26px;color: #5cb85c;" (click)="onAddStudentClick()">
+					<mat-icon>add_box</mat-icon>
+				</button>
+					<button mat-icon-button matTooltip="Edit student"
+						style=' border-color: transparent;font-size:26px;color: #f0ad4e;'
+						(click)="onEditClick(student.studentId)">
+						<mat-icon>edit</mat-icon>
+					</button>
+					<button mat-icon-button matTooltip="Delete student"
+						style=" border-color: transparent;font-size:26px;color:#d9534f"
+						(click)="onDeleteClick(student.studentId)">
+						<mat-icon>delete</mat-icon>
+					</button>
+				</span>
+				<span *ngIf="isEditingStudent(student.studentId)">
+					<button mat-icon-button matTooltip="Save" (click)="onUpdateClick()" [disabled]="isUpdateDisabled()">
+						<mat-icon>done</mat-icon>
+					</button>
+					<button mat-icon-button matTooltip="Cancel" (click)="onCancelEditClick()">
+						<mat-icon>close</mat-icon>
+					</button>
+				</span>
+			</td>
+		</ng-container>
+
+		<!-- The student detail row columns. It's a single column that spans across all the main row columns. -->
+		<ng-container matColumnDef="studentDetail">
+			<td mat-cell *matCellDef="let student" [attr.colspan]="columnsToDisplay.length">
+				<!-- <app-student-detail [studentId]="student.studentId" [isExpanded]="isStudentExpanded(student.studentId)">
+				</app-student-detail> -->
+			</td>
+		</ng-container>
+
+		<!-- The cells for the add header row -->
+		<ng-container matColumnDef="add-hdr-first">
+			<td mat-cell *matHeaderCellDef [attr.colspan]="2"></td>
+		</ng-container>
+		<ng-container matColumnDef="add-hdr-studentId">
+			<td mat-cell *matHeaderCellDef>
+				<mat-form-field appearance="outline" style="width: 140px;">
+					<input matInput [formControl]="studentSchoolIdFormControl">
+					<mat-error *ngIf="studentSchoolIdFormControl.invalid">
+						{{getErrorMessage(studentSchoolIdFormControl)}}</mat-error>
+				</mat-form-field>
+			</td>
+		</ng-container>
+		<ng-container matColumnDef="add-hdr-firstName">
+			<td mat-cell *matHeaderCellDef>
+				<mat-form-field appearance="outline" style="width: 100%;">
+					<input matInput [formControl]="firstNameFormControl">
+					<mat-error *ngIf="firstNameFormControl.invalid">{{getErrorMessage(firstNameFormControl)}}
+					</mat-error>
+				</mat-form-field>
+			</td>
+		</ng-container>
+		<ng-container matColumnDef="add-hdr-lastName">
+			<td mat-cell *matHeaderCellDef>
+				<mat-form-field appearance="outline" style="width: 100%;">
+					<input matInput [formControl]="lastNameFormControl">
+					<mat-error *ngIf="lastNameFormControl.invalid">{{getErrorMessage(lastNameFormControl)}}</mat-error>
+				</mat-form-field>
+			</td>
+		</ng-container>
+		<ng-container matColumnDef="add-hdr-studentEmail">
+			<td mat-cell *matHeaderCellDef>
+				<mat-form-field appearance="outline" style="width: 100%;">
+					<input matInput [formControl]="studentEmailFormControl">
+					<mat-error *ngIf="studentEmailFormControl.invalid">{{getErrorMessage(studentEmailFormControl)}}
+					</mat-error>
+				</mat-form-field>
+			</td>
+		</ng-container>
+		<ng-container matColumnDef="add-hdr-last">
+			<td mat-cell *matHeaderCellDef>
+				<button mat-icon-button matTooltip="Save" (click)="onAddClick()" [disabled]="isAddDisabled()">
+					<mat-icon>done</mat-icon>
+				</button>
+				<button mat-icon-button matTooltip="Cancel" (click)="onCancelAddClick()">
+					<mat-icon>close</mat-icon>
+				</button>
+			</td>
+		</ng-container>
+
+		<!-- The header row. It's sticky so it won't move during scrolling. -->
+		<tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+
+		<!-- The add header row. -->
+		<tr mat-header-row [ngClass]="getAddHeaderRowClass()"
+			*matHeaderRowDef="['add-hdr-first', 'add-hdr-studentId', 'add-hdr-firstName', 'add-hdr-lastName', 'add-hdr-studentEmail', 'add-hdr-last']; sticky: true">
+		</tr>
+
+		<!-- The main student row. -->
+		<tr mat-row *matRowDef="let student; columns: columnsToDisplay;"></tr>
+
+		<!-- The detail student row. -->
+		<tr mat-row *matRowDef="let student; columns: ['studentDetail'];"
+			[ngClass]="getStudentDetailClass(student.studentId)"></tr>
+
+	</table>
+	</div>
+
+	<mat-paginator [length]="totalStudents" [pageSize]="defaultPageSize" [pageSizeOptions]="pageSizeOptions"
+		[showFirstLastButtons]="showFirstLastButtons"></mat-paginator>
+</div>
+
+
+
+<section class=""
+style="background-color: navy;padding-top: 0.1em;height: 212px;position: relative;margin-top: 119px; top: 5px;">
+<div class="container text-center text-md-start mt-5">
+  <!-- Grid row -->
+  <div class="row mt-3">
+	<!-- Grid column -->
+	<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4" style="color: white;font-size:14px;position: relative;bottom: 20px;">
+	  <!-- Content -->
+	  <h6 class="text-uppercase fw-bold mb-4">
+		<i class="fas fa-gem me-3"></i>Enterprise company
+	  </h6>
+	  <p>
+		The company wishes you best regards
+	  </p>
+	  <a style="color: white;font-size: 12px;" href="https://mdbootstrap.com/">© 2022 Copyright:
+		www.enterprisecompany.com</a>
+	</div>
+	<!-- Grid column -->
+
+	<!-- Grid column -->
+	<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4"
+	  style="color: white;font-size: 13px;position: relative;bottom: 20px;">
+	  <!-- Links -->
+	  <h6 class="text-uppercase fw-bold mb-4"  style="font-size: 13px;">
+		Contact
+	  </h6>
+	  <p><i class="fas fa-home me-3" ></i> New York, NY 10012, US</p>
+	  <p>
+		<i class="fas fa-envelope me-3"></i>
+		info@example.com
+	  </p>
+	  <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+	  <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+
+	</div>
+
+  </div>
+
+
+
+</div>
+
+
+
+</section>
+</div>

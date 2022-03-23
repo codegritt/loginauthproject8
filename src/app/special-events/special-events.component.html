@@ -1,0 +1,205 @@
+
+  <div id="MasterDiv">
+
+    <nav class="navbar navbar-dark bg-primary">
+  
+      <nav role="navigation">
+        <div id="menuToggle">
+  
+          <input type="checkbox" />
+  
+          <span></span>
+          <span></span>
+          <span></span>
+  
+          <ul id="menu">
+            <a href="index.html" routerLink="/home" routerLinkActive="active">
+              <li>Home</li>
+            </a>
+            <a href="about.html" routerLink="/register" routerLinkActive="active">
+              <li>Register Form</li>
+          </a>
+
+          <a href="contact.html" routerLink="/login" routerLinkActive="active">
+              <li>Login Form</li>
+          </a>
+
+          <a href="store.html" routerLink="/special" routerLinkActive="active">
+              <li>Dashboard 1</li>
+          </a>
+
+          <a href="store.html" routerLink="/dashboard3" routerLinkActive="active">
+              <li>Dashboard 3</li>
+          </a>
+          
+          <a href="store.html" routerLink="/fileupload" routerLinkActive="active">
+            <li>Fileupload</li>
+        </a>
+
+        <a href="store.html" routerLink="/home" routerLinkActive="active">
+          <li>Logout</li>
+      </a>
+            
+          </ul>
+        </div>
+      </nav>
+  
+  
+  
+      <div class="container-fluid">
+       
+        
+        <span class="navbar-brand mb-0 h1"
+          style="font-size:25px;font-family: sans-serif;position: relative;display: flex;justify-content: center;">Dashboard 1</span>
+        
+          <span class="ref" style="font-size:15px;font-family: sans-serif;position: fixed;right: 100px;top: 19px;">User: Gokul</span>
+        
+        <button class="btn1" routerLink="/login" routerLinkActive="active"><i class='fas fa-user-circle'
+            style='color: white;position: fixed;right: 75px;top: 20px;'></i></button>
+  
+            <button class="btn" routerLink="/home" routerLinkActive="active"> <i class="fa fa-sign-out" style='color: #fff;position: fixed;display: flex;justify-content: end;right: 25px;top: 19px;'></i></button>
+           
+            
+         <!-- <button class="btn"   routerLink="/home" routerLinkActive="active"><i class="material-icons"
+            style="color: white;position: fixed;right: 25px;top: 15px;">logout</i></button> -->
+            <!-- *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()"  -->
+      </div>
+    </nav>
+  
+ <div class="container">
+      <nav aria-label="Breadcrumb" class="breadcrumb">
+        <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="#" routerLink="/home" routerLinkActive="home" itemprop="item">
+              <span itemprop="name" class="sr-only">Home</span>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+            </a>
+            <meta itemprop="position" content="1" />
+          </li>
+        
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="#"  routerLink="/special" routerLinkActive="active" itemprop="item">
+              <span itemprop="name">Dashboard 1</span>
+            </a>
+            <meta itemprop="position" content="4" />
+          </li>
+         
+        </ol>
+      </nav>
+    </div> 
+
+
+<div class="mat-elevation-z8">
+  <span class="span1">Search</span>
+  <mat-form-field class="filter" >
+  
+  <input (keyup)="applyFilter($event.target.value)" matInput placeholder="">
+  
+  </mat-form-field>
+
+ 
+
+    <mat-table [dataSource]="dataSource"  class="table table-bordered" matSort  >
+      <!-- Position Column -->
+      <ng-container  matColumnDef="position"  >
+        <mat-header-cell    *matHeaderCellDef  mat-sort-header> Employee ID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header > Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="weight">
+        <mat-header-cell   *matHeaderCellDef mat-sort-header > Email </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+      </ng-container>
+    
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="symbol">
+        <mat-header-cell  *matHeaderCellDef  >Actions </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          
+
+          <button  matTooltip="Add User" style=" border-color: transparent; font-size:26px;color: #5cb85c;" mat-icon-button color="accent" aria-label="Example icon button with a menu icon">
+            <mat-icon>add_box</mat-icon>
+          </button>&nbsp;&nbsp;
+  
+  
+          <button  matTooltip="Edit User" style=' border-color: transparent;font-size:26px;color: #f0ad4e;' mat-icon-button color="accent" aria-label="Example icon button with a menu icon">
+            <mat-icon>edit</mat-icon>
+          </button>&nbsp;&nbsp;
+  
+  
+          <button  matTooltip="Delete User" style=" border-color: transparent;font-size:26px;color:#d9534f" mat-icon-button color="accent" aria-label="Example icon button with a menu icon">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+    
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row  *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator  class="paginator" [length]="20" [pageSize]="5" [pageSizeOptions]="[5,10,20]"  aria-label="Select page" showFirstLastButtons >
+
+
+    </mat-paginator>
+   
+
+  </div>
+
+  
+
+  <section class=""
+      style="background-color: navy;padding-top: 0.1em;height: 212px;position: relative;margin-top: 119px; top: 5px;">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4" style="color: white;font-size:14px;position: relative;bottom: 20px;">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              <i class="fas fa-gem me-3"></i>Enterprise company
+            </h6>
+            <p>
+              The company wishes you best regards
+            </p>
+            <a style="color: white;font-size: 12px;" href="https://mdbootstrap.com/">© 2022 Copyright:
+              www.enterprisecompany.com</a>
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4"
+            style="color: white;font-size: 13px;position: relative;bottom: 20px;">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4"  style="font-size: 13px;">
+              Contact
+            </h6>
+            <p><i class="fas fa-home me-3" ></i> New York, NY 10012, US</p>
+            <p>
+              <i class="fas fa-envelope me-3"></i>
+              info@example.com
+            </p>
+            <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+            <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+  
+          </div>
+  
+        </div>
+  
+     
+  
+      </div>
+  
+    
+  
+    </section>
+</div>
