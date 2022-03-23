@@ -155,8 +155,9 @@ tr:nth-child(4n+3) {
   width: 80px;
 } */
 
-
-
+.table-loading-shade ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+  stroke: navy;
+}
 
 .container-fluid{
   text-align: center;
