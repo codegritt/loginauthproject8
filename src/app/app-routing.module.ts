@@ -45,7 +45,11 @@ const routes: Routes = [
         path: 'fileupload',
         
         component: FileuploadComponent
-      }
+      },
+      {
+        path: 'students',
+        loadChildren: () => import('./students/students.module').then(mod => mod.StudentsModule)
+    }
     ];
 
 @NgModule({
