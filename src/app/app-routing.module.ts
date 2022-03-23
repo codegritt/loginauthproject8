@@ -30,7 +30,7 @@ const routes: Routes = [
       },
       {
         path: 'special',
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         component: SpecialEventsComponent
       },
       {
