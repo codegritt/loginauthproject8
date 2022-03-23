@@ -284,6 +284,10 @@ export class StudentsListComponent implements AfterViewInit {
         this.firstNameFormControl.setValue(student.firstName);
         this.lastNameFormControl.setValue(student.lastName);
         this.studentEmailFormControl.setValue(student.studentEmail);
+
+        sessionStorage.setItem("studentId_userid","studentId_adminuser");
+		localStorage.setItem("studentId_userid","studentId_adminuser");
+
     }
 
     /**
