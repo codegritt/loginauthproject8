@@ -47,15 +47,10 @@ const routes: Routes = [
         
         component: FileuploadComponent
       },
-    //   {
-    //     path: 'students',
-    //     loadChildren: () => import('./students/students.module').then(mod => mod.StudentsModule)
-    // },
-    {
-      path: '/students/list',
-      
-      component: StudentsListComponent
-    } 
+      {
+        path: 'students',
+        loadChildren: () => import('./students/students.module').then(mod => mod.StudentsModule)
+    }
   
     ];
 
