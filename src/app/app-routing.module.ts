@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SpecialEventsComponent } from './special-events/special-events.component';
+import { StudentsListComponent } from './students/students-list/students-list.component';
 
 
 
@@ -49,6 +50,11 @@ const routes: Routes = [
       {
         path: 'students',
         loadChildren: () => import('./students/students.module').then(mod => mod.StudentsModule)
+    },
+    {
+      path: '/students/list',
+      
+      component: StudentsListComponent
     }
     ];
 
