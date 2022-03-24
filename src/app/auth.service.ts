@@ -42,6 +42,7 @@ export class AuthService {
     localStorage.removeItem('token')
     this._router.navigate(['/events'])
     this.currentUserSubject.next(null);
+    localStorage.removeItem('currentUserSubject')
   }
 
   getToken() {
