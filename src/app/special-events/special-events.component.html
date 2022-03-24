@@ -61,12 +61,12 @@
         <button class="btn1" routerLink="/login" routerLinkActive="active"><i class='fas fa-user-circle'
             style='color: white;position: fixed;right: 75px;top: 20px;'></i></button>
   
-            <button class="btn" routerLink="/home" routerLinkActive="active"> <i class="fa fa-sign-out" style='color: #fff;position: fixed;display: flex;justify-content: end;right: 25px;top: 19px;'></i></button>
+            <!-- <button class="btn" routerLink="/home" routerLinkActive="active"> <i class="fa fa-sign-out" style='color: #fff;position: fixed;display: flex;justify-content: end;right: 25px;top: 19px;'></i></button> -->
            
             
-         <!-- <button class="btn"   routerLink="/home" routerLinkActive="active"><i class="material-icons"
-            style="color: white;position: fixed;right: 25px;top: 15px;">logout</i></button> -->
-            <!-- *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()"  -->
+          <button class="btn"   routerLink="/home" routerLinkActive="active"><i class="material-icons"*ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()" 
+            style="color: white;position: fixed;right: 25px;top: 15px;">logout</i></button>
+              
       </div>
     </nav>
   
